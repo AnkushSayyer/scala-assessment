@@ -1,7 +1,7 @@
 package com.hashmap.asessment.service
 
-import com.hashmap.asessment.model.Item
-import com.hashmap.asessment.{Coin, Money, Note, model}
+import com.hashmap.asessment.model.{Coin, Item, Money, Note}
+import com.hashmap.asessment.model
 
 import scala.collection.mutable
 
@@ -13,12 +13,14 @@ object Database {
   private val acceptedMoney = scala.collection.mutable.HashSet[Money]()
 
   def addProduct(item: model.Item): Boolean ={
-    addItemToMap(item)
-    products.add(item)
-    //productsMap += (name -> product)
+    val size = productsMap.size
+    if(addItemToMap(item).size > size)
+      false
+    else
+      true
   }
 
-  def addItemToMap(item: Item) = {
+  def addItemToMap(item: Item): mutable.Map[String, Item] = {
     productsMap += (item.name -> item)
   }
   def getProduct(itemName: String)={
@@ -35,17 +37,25 @@ object Database {
   def addCoin(coin: Coin): Boolean ={
     coins.add(coin)
   }
-  def getCoin() ={
-
+  def getCoins(): mutable.HashSet[Coin] ={
+    return coins
   }
   def addNote(note: Note): Boolean ={
     notes.add(note)
   }
-  def getNote() ={
-
+  def getNotes(): mutable.HashSet[Note] ={
+    return notes
   }
 
   def addAcceptedMoney(money: Money): Boolean ={
     acceptedMoney.add(money)
+  }
+
+  def updateItemQuantity(itemName : String, quant : Int): Unit ={
+    productsMap.get(itemName).get.quantity = quant
+  }
+
+  def decrementQuantity(itemName : String, decr : Int): Unit ={
+    productsMap.get(itemName).get.quantity -= 1
   }
 }

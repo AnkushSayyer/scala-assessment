@@ -11,4 +11,8 @@ class AdminService {
   def addAcceptedMoney(money: Money) : Boolean = {
     Database.addAcceptedMoney(money)
   }
+
+  def updateItemQuantity(itemName : String, quatity : Int): Unit ={
+    Database.updateItemQuantity(itemName, quatity)
+  }
 }

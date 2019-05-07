@@ -1,6 +1,6 @@
 package com.hashmap.asessment
 
-import com.hashmap.asessment.model.Item
+import com.hashmap.asessment.model.{Coin, Item, Note}
 import com.hashmap.asessment.service.{AdminService, Database}
 import org.scalatest.{BeforeAndAfter, FunSuite}
 

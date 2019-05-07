@@ -1,5 +1,5 @@
 package com.hashmap.asessment.model
 
-case class Item(val name : String, val price : Int, val quantity : Int) {
+case class Item(val name : String, val price : Int, var quantity : Int) {
 
 }
